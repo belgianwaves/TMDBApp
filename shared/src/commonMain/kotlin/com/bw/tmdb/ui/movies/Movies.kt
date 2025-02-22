@@ -1,6 +1,5 @@
 package com.bw.tmdb.ui.movies
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -60,7 +59,6 @@ fun Movies(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.surface)
                 .padding(16.dp)
         ) {
             Row(
@@ -70,7 +68,6 @@ fun Movies(navController: NavController) {
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    tint = MaterialTheme.colorScheme.onSurface,
                     contentDescription = stringResource(Res.string.back),
                     modifier = Modifier
                         .clickable {
@@ -80,7 +77,6 @@ fun Movies(navController: NavController) {
                 )
                 Text(
                     labels[scope] ?: stringResource(Res.string.movies),
-                    color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.titleLarge
                 )
             }
@@ -106,7 +102,6 @@ fun Movies(navController: NavController) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.surface)
                 .padding(16.dp)
         ) {
             item {
@@ -161,7 +156,6 @@ private fun MovieRow(
         ) {
             Text(
                 label,
-                color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.titleLarge
             )
             Text(

@@ -1,5 +1,9 @@
 package com.bw.tmdb
 
+import android.content.Context
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.driver.android.AndroidSqliteDriver
+import com.bw.tmdb.db.Database
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.HttpTimeout
@@ -44,5 +48,11 @@ actual fun createHttpClient(verbose: Boolean): HttpClient {
         install(UserAgent) {
             agent = "TMDBApp/1.0"
         }
+    }
+}
+
+actual class DriverFactory(private val context: Context) {
+    actual fun createDriver(): SqlDriver {
+        return AndroidSqliteDriver(Database.Schema, context, "movies.db")
     }
 }

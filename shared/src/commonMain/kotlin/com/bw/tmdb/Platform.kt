@@ -1,5 +1,6 @@
 package com.bw.tmdb
 
+import app.cash.sqldelight.db.SqlDriver
 import io.ktor.client.HttpClient
 
 interface Platform {
@@ -11,3 +12,7 @@ interface Platform {
 expect fun getPlatform(): Platform
 
 expect fun createHttpClient(verbose: Boolean = true): HttpClient
+
+expect class DriverFactory {
+    fun createDriver(): SqlDriver
+}

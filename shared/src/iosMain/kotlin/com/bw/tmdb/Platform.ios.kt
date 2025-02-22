@@ -1,5 +1,8 @@
 package com.bw.tmdb
 
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.driver.native.NativeSqliteDriver
+import com.bw.tmdb.db.Database
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.darwin.Darwin
 import io.ktor.client.plugins.HttpTimeout
@@ -45,5 +48,11 @@ actual fun createHttpClient(verbose: Boolean): HttpClient {
         install(UserAgent) {
             agent = "TMDBApp/1.0"
         }
+    }
+}
+
+actual class DriverFactory() {
+    actual fun createDriver(): SqlDriver {
+        return NativeSqliteDriver(Database.Schema, "movies.db", maxReaderConnections = 4)
     }
 }

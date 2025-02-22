@@ -61,9 +61,12 @@ kotlin {
             implementation(libs.landscapist.animation)
             implementation(libs.landscapist.placeholder)
             implementation(libs.landscapist.palette)
+            implementation(libs.haze)
+            implementation(libs.haze.materials)
 
             implementation(libs.kermit)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.coroutines.extensions)
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
@@ -88,5 +91,13 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("com.bw.tmdb.db")
+        }
     }
 }

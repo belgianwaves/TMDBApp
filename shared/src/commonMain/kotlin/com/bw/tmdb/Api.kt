@@ -3,6 +3,8 @@ package com.bw.tmdb
 import com.bw.tmdb.transport.Movie
 import com.bw.tmdb.transport.MovieDetails
 import com.bw.tmdb.transport.MoviesResult
+import com.bw.tmdb.transport.Video
+import com.bw.tmdb.transport.VideosResult
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.headers
@@ -55,5 +57,16 @@ class Api(verbose: Boolean, private val language: String) {
             }
         }
         return response.body<MovieDetails>()
+    }
+
+    suspend fun getVideos(id: Int): List<Video> {
+        val url = "https://api.themoviedb.org/3/movie/$id/videos?language=$language"
+
+        val response: HttpResponse = httpClient.get(url) {
+            headers {
+                append(HttpHeaders.Authorization, "Bearer $apiKey")
+            }
+        }
+        return response.body<VideosResult>().results
     }
 }

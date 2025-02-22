@@ -1,0 +1,38 @@
+import kotlin.Boolean;
+
+CREATE TABLE Movie(
+    id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL,
+    original_title TEXT NOT NULL,
+    overview TEXT NOT NULL,
+    tagline TEXT NOT NULL,
+    status TEXT NOT NULL,
+    release_date TEXT NOT NULL,
+    genres TEXT NOT NULL,
+    poster_path TEXT NOT NULL,
+    backdrop_path TEXT NOT NULL,
+    homepage TEXT,
+    vote_average REAL NOT NULL,
+    videos TEXT NOT NULL,
+	liked INTEGER AS Boolean NOT NULL
+);
+
+insertMovie:
+INSERT INTO Movie(id, title, original_title, overview, tagline, status, release_date, genres, poster_path, backdrop_path, homepage, vote_average, videos, liked)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?);
+
+updateMovie:
+UPDATE Movie
+SET liked = ?
+WHERE id = ?;
+
+selectMovie:
+SELECT * FROM Movie WHERE id = ?;
+
+selectFavoriteMovies:
+SELECT * FROM Movie WHERE liked != 0;
+
+deleteMovie:
+DELETE FROM Movie
+WHERE id = ?;
+

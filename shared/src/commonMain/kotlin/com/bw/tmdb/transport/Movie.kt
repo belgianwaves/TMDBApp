@@ -34,5 +34,18 @@ data class MovieDetails(
     val genres: List<Genre>,
     val poster_path: String,
     val backdrop_path: String,
-    val vote_average: Float
+    val homepage: String? = null,
+    val vote_average: Double
+)
+
+@Serializable
+data class VideosResult(
+    val results: List<Video>
+)
+
+@Serializable
+data class Video(
+    val key: String,
+    val site: String,
+    val official: Boolean
 )

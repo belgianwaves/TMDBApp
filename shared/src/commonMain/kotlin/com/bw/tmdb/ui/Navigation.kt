@@ -41,6 +41,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.bw.tmdb.db.Movie
 import com.bw.tmdb.ui.favorites.Favorites
 import com.bw.tmdb.ui.movies.MovieDetails
 import com.bw.tmdb.ui.movies.Movies
@@ -52,17 +53,24 @@ import tmdbapp.shared.generated.resources.movies
 import tmdbapp.shared.generated.resources.search
 
 @Composable
-fun Navigation() {
+fun Navigation(
+    onOpenYoutube: (Movie) -> Unit,
+    onOpenBrowser: (Movie) -> Unit
+) {
     val navController = rememberNavController()
 
     NavHostMain(
-        navController = navController
+        navController = navController,
+        onOpenYoutube = onOpenYoutube,
+        onOpenBrowser = onOpenBrowser
     )
 }
 
 @Composable
 fun NavHostMain(
-    navController: NavHostController
+    navController: NavHostController,
+    onOpenYoutube: (Movie) -> Unit,
+    onOpenBrowser: (Movie) -> Unit
 ) {
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentScreen = backStackEntry?.destination
@@ -114,7 +122,7 @@ fun NavHostMain(
             }
             composable(route = "${Destinations.MovieDetails}/{id}") { backStackEntry ->
                 val id = backStackEntry.arguments?.getString("id") ?: "0"
-                MovieDetails(navController, id.toInt())
+                MovieDetails(navController, id.toInt(), onOpenYoutube, onOpenBrowser)
             }
         }
     }

@@ -15,6 +15,7 @@ desugar_jdk_libs = "2.1.4"
 kotlinxDatetime = "0.6.1"
 androidDriver = "2.0.2"
 navigationCompose = "2.8.0-alpha02"
+haze = "1.3.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -47,6 +48,9 @@ native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "a
 android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "androidDriver" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+coroutines-extensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "androidDriver" }
+haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
+haze-materials = { module = "dev.chrisbanes.haze:haze-materials", version.ref = "haze" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
