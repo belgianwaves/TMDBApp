@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="back">Back</string>
+    <string name="movies">Movies</string>
+    <string name="favorites">Favorites</string>
+    <string name="search">Search</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="popular">Popular</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="upcoming">Upcoming</string>
+</resources>
