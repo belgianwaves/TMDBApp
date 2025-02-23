@@ -3,6 +3,7 @@ package com.bw.tmdb.ui
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -10,6 +11,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -27,6 +31,28 @@ import com.skydoves.landscapist.components.rememberImageComponent
 import com.skydoves.landscapist.placeholder.shimmer.Shimmer
 import com.skydoves.landscapist.placeholder.shimmer.ShimmerPlugin
 import kotlin.math.roundToInt
+
+
+@Composable
+fun MovieGrid(movies: List<Movie>, onEnd: () -> Unit, onSelection: (Movie) -> Unit) {
+    BoxWithConstraints {
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(if (maxWidth > maxHeight) 4 else 2),
+            modifier = Modifier
+                .padding(top = 16.dp)
+        ) {
+            itemsIndexed(movies) { index, movie ->
+                MoviePosterImage(movie) {
+                    onSelection(it)
+                }
+
+                if (index ==movies.size - 1) {
+                    onEnd()
+                }
+            }
+        }
+    }
+}
 
 @Composable
 fun MoviePosterImage(movie: Movie, width: Int = 154, onClick: (Movie) -> Unit) {

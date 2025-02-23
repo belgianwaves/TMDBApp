@@ -3,6 +3,7 @@ package com.bw.tmdb.ui.movies
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,8 +31,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.bw.tmdb.MPBackHandler
 import com.bw.tmdb.transport.Movie
 import com.bw.tmdb.ui.Destinations
+import com.bw.tmdb.ui.MovieGrid
 import com.bw.tmdb.ui.MoviePosterImage
 import org.jetbrains.compose.resources.stringResource
 import tmdbapp.shared.generated.resources.Res
@@ -53,6 +56,10 @@ fun Movies(navController: NavController) {
         "now_playing" to stringResource(Res.string.now_playing),
         "upcoming" to stringResource(Res.string.upcoming)
     )
+
+    MPBackHandler(state.scope != null) {
+        viewModel.fallbackToLanding()
+    }
 
     if (state.topRated.isEmpty()) {
         Column(
@@ -93,20 +100,12 @@ fun Movies(navController: NavController) {
                 )
             }
 
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                modifier = Modifier
-                    .padding(top = 16.dp)
-            ) {
-                itemsIndexed(state.all) { index, movie ->
-                    MoviePosterImage(movie) {
-                        navController.navigate("${Destinations.MovieDetails}/${it.id}")
-                    }
-
-                    if (index == state.all.size - 1) {
-                        viewModel.fetchMore()
-                    }
+            MovieGrid(
+                state.all, {
+                    viewModel.fetchMore()
                 }
+            ) {
+                navController.navigate("${Destinations.MovieDetails}/${it.id}")
             }
         }
     } else {

@@ -1,5 +1,6 @@
 package com.bw.tmdb
 
+import androidx.compose.runtime.Composable
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import com.bw.tmdb.db.Database
@@ -55,4 +56,8 @@ actual class DriverFactory() {
     actual fun createDriver(): SqlDriver {
         return NativeSqliteDriver(Database.Schema, "movies.db", maxReaderConnections = 4)
     }
+}
+
+@Composable
+actual fun MPBackHandler(enabled: Boolean, onBack: () -> Unit) {
 }

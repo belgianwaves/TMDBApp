@@ -1,5 +1,6 @@
 package com.bw.tmdb
 
+import androidx.compose.runtime.Composable
 import app.cash.sqldelight.db.SqlDriver
 import io.ktor.client.HttpClient
 
@@ -16,3 +17,6 @@ expect fun createHttpClient(verbose: Boolean = true): HttpClient
 expect class DriverFactory {
     fun createDriver(): SqlDriver
 }
+
+@Composable
+expect fun MPBackHandler(enabled: Boolean = true, onBack: () -> Unit)
