@@ -8,4 +8,8 @@
     <string name="popular">Popular</string>
     <string name="now_playing">Now Playing</string>
     <string name="upcoming">Upcoming</string>
+    <string name="open_youtube">Play on Youtube</string>
+    <string name="open_browser">Open in Browser</string>
+    <string name="toggle_liked">Toggle Liked</string>
+    <string name="search_movies">Search Movies</string>
 </resources>

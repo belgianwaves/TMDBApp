@@ -31,21 +31,21 @@ class MovieDetailsViewModel(
 
                 val fetched = api.getMovieDetails(id)
                     queries.insertMovie(
-                        id.toLong(),
-                        fetched.title,
-                        fetched.original_title,
-                        fetched.overview,
-                        fetched.tagline,
-                        fetched.status,
-                        fetched.release_date,
-                        fetched.genres.joinToString(", ") { it.name },
-                        fetched.poster_path,
-                        fetched.backdrop_path,
-                        fetched.homepage,
-                        fetched.vote_average,
-                        videos.filter { it.site.lowercase().contains("youtube") }
+                        id = id.toLong(),
+                        title = fetched.title,
+                        original_title = fetched.original_title,
+                        overview = fetched.overview,
+                        tagline = fetched.tagline,
+                        status = fetched.status,
+                        release_date = fetched.release_date,
+                        genres = fetched.genres.joinToString(", ") { it.name },
+                        poster_path = fetched.poster_path,
+                        backdrop_path = fetched.backdrop_path,
+                        homepage = fetched.homepage,
+                        vote_average = fetched.vote_average,
+                        videos = videos.filter { it.site.lowercase().contains("youtube") }
                             .joinToString(", ") { it.key },
-                        false
+                        liked = false
                     )
             }
 

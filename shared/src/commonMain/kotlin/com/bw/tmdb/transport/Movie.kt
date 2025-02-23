@@ -17,8 +17,8 @@ data class Genre(
 data class Movie(
     val id: Int,
     val title: String,
-    val poster_path: String,
-    val backdrop_path: String,
+    val poster_path: String? = null,
+    val backdrop_path: String? = null,
     val vote_average: Float
 )
 
@@ -32,8 +32,8 @@ data class MovieDetails(
     val status: String,
     val release_date: String,
     val genres: List<Genre>,
-    val poster_path: String,
-    val backdrop_path: String,
+    val poster_path: String? = null,
+    val backdrop_path: String? =  null,
     val homepage: String? = null,
     val vote_average: Double
 )

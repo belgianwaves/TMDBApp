@@ -21,7 +21,6 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Movie
 import androidx.compose.material.icons.filled.OpenInBrowser
-import androidx.compose.material.icons.filled.YoutubeSearchedFor
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -49,6 +48,9 @@ import dev.chrisbanes.haze.hazeSource
 import org.jetbrains.compose.resources.stringResource
 import tmdbapp.shared.generated.resources.Res
 import tmdbapp.shared.generated.resources.back
+import tmdbapp.shared.generated.resources.open_browser
+import tmdbapp.shared.generated.resources.open_youtube
+import tmdbapp.shared.generated.resources.toggle_liked
 
 @Composable
 fun MovieDetails(
@@ -164,7 +166,7 @@ private fun MovieActions(
     ) {
         Icon(
             imageVector = Icons.Filled.Movie,
-            contentDescription = "Play on Youtube",
+            contentDescription = stringResource(Res.string.open_youtube),
             tint = MaterialTheme.colorScheme.onSurface.copy(alpha = if (movie.videos.isBlank()) 0.2f else 1.0f),
             modifier = Modifier
                 .clickable {
@@ -174,7 +176,7 @@ private fun MovieActions(
         )
         Icon(
             imageVector = Icons.Filled.OpenInBrowser,
-            contentDescription = "Open in Browser",
+            contentDescription = stringResource(Res.string.open_browser),
             tint = MaterialTheme.colorScheme.onSurface.copy(alpha = if (movie.homepage.isNullOrBlank()) 0.2f else 1.0f),
             modifier = Modifier
                 .clickable {
@@ -184,7 +186,7 @@ private fun MovieActions(
         )
         Icon(
             imageVector = if (movie.liked) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-            contentDescription = "Toggle Liked",
+            contentDescription = stringResource(Res.string.toggle_liked),
             modifier = Modifier
                 .clickable {
                     onToggleLike(movie)
@@ -202,7 +204,7 @@ private fun MovieOverview(movie: Movie) {
             .fillMaxWidth()
             .padding(top = 16.dp)
     ) {
-        if (!movie.tagline.isBlank()) {
+        if (movie.tagline.isNotBlank()) {
             Text(
                 movie.tagline,
                 color = MaterialTheme.colorScheme.primary,

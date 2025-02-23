@@ -34,7 +34,7 @@ fun Favorites(navController: NavController) {
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        itemsIndexed(state.favorites) { index, movie ->
+        itemsIndexed(state.favorites) { _, movie ->
             MoviePosterImage(movie) {
                 navController.navigate("${Destinations.MovieDetails}/${it.id}")
             }

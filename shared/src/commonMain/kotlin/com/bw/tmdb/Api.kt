@@ -69,4 +69,15 @@ class Api(verbose: Boolean, private val language: String) {
         }
         return response.body<VideosResult>().results
     }
+
+    suspend fun searchMovies(query: String): List<Movie> {
+        val url = "https://api.themoviedb.org/3/search/movie?language=$language&query=${query.replace(" ", "%20")}"
+
+        val response: HttpResponse = httpClient.get(url) {
+            headers {
+                append(HttpHeaders.Authorization, "Bearer $apiKey")
+            }
+        }
+        return response.body<MoviesResult>().results
+    }
 }
