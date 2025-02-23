@@ -1,5 +1,6 @@
 package com.bw.tmdb.ui.movies
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,8 +14,10 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -23,6 +26,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -49,6 +53,18 @@ fun Movies(navController: NavController) {
         "now_playing" to stringResource(Res.string.now_playing),
         "upcoming" to stringResource(Res.string.upcoming)
     )
+
+    if (state.topRated.isEmpty()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            CircularProgressIndicator()
+        }
+        return
+    }
 
     val scope = state.scope
     if (scope != null) {
@@ -157,6 +173,9 @@ private fun MovieRow(
                 ">>",
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier
+                    .clip(RoundedCornerShape(25.dp))
+                    .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.3f))
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
                     .clickable {
                         onAll()
                     }

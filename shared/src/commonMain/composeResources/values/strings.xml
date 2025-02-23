@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="all">All</string>
     <string name="back">Back</string>
     <string name="movies">Movies</string>
     <string name="favorites">Favorites</string>
@@ -12,4 +13,5 @@
     <string name="open_browser">Open in Browser</string>
     <string name="toggle_liked">Toggle Liked</string>
     <string name="search_movies">Search Movies</string>
+    <string name="empty_favorites">No favorites have been selected yet. You can like a movie in the details view and all your liked movies will show up here</string>
 </resources>

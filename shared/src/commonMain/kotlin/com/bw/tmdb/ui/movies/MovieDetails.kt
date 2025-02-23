@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.bw.tmdb.db.Movie
+import com.bw.tmdb.ui.RatingWidget
 import com.skydoves.landscapist.coil3.CoilImage
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.HazeStyle
@@ -142,7 +143,13 @@ private fun MovieHeader(movie: Movie) {
             Text(movie.release_date)
             Text(movie.status)
 
-            Text(movie.genres)
+            Text(
+                movie.genres,
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
+            )
+
+            RatingWidget(movie.vote_average)
         }
     }
 }
@@ -161,7 +168,7 @@ private fun MovieActions(
             .fillMaxWidth()
             .height(50.dp)
             .clip(RoundedCornerShape(25.dp))
-            .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)) // Background color
+            .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.5f))
             .padding(horizontal = 32.dp, vertical = 16.dp)
     ) {
         Icon(
@@ -208,7 +215,9 @@ private fun MovieOverview(movie: Movie) {
             Text(
                 movie.tagline,
                 color = MaterialTheme.colorScheme.primary,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
             )
         }
         Text(
@@ -250,13 +259,13 @@ private fun MoviePosterImage(movie: Movie) {
         modifier = Modifier
             .width(150.dp)
             .wrapContentHeight()
+            .padding(8.dp)
     ) {
         CoilImage(
             imageModel = { imageUrl },
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(12.dp))
-                .padding(8.dp)
         )
     }
 }
