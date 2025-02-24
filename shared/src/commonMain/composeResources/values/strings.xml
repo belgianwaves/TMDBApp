@@ -14,4 +14,9 @@
     <string name="toggle_liked">Toggle Liked</string>
     <string name="search_movies">Search Movies</string>
     <string name="empty_favorites">No favorites have been selected yet. You can like a movie in the details view and all your liked movies will show up here</string>
+    <string name="user_rating">User Rating</string>
+    <string name="like_movie">Like this movie. Currently not liked</string>
+    <string name="unlike_movie">Unlike this movie. Currently liked</string>
+    <string name="currently_selected">Currently Selected</string>
+    <string name="currently_unselected">Currently Not Selected</string>
 </resources>

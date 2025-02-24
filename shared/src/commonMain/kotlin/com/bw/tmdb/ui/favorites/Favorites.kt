@@ -21,13 +21,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.bw.tmdb.db.Movie
 import com.bw.tmdb.ui.Destinations
-import com.bw.tmdb.ui.MoviePosterImage
 import com.skydoves.landscapist.coil3.CoilImage
 import org.jetbrains.compose.resources.stringResource
 import tmdbapp.shared.generated.resources.Res
@@ -88,6 +89,9 @@ private fun MoviePosterImage(movie: Movie, width: Int = 154, onClick: (Movie) ->
                 }
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(12.dp))
+                .semantics {
+                    contentDescription = movie.title
+                }
         )
     }
 }

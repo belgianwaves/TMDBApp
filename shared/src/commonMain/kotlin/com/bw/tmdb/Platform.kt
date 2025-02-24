@@ -12,6 +12,8 @@ interface Platform {
 
 expect fun getPlatform(): Platform
 
+expect fun getCurrentLocale(): String
+
 expect fun createHttpClient(verbose: Boolean = true): HttpClient
 
 expect class DriverFactory {

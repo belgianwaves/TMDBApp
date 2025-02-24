@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="all">Tout</string>
+    <string name="back">Retour</string>
+    <string name="movies">Films</string>
+    <string name="favorites">Favoris</string>
+    <string name="search">Rechercher</string>
+    <string name="top_rated">Les mieux notés</string>
+    <string name="popular">Populaires</string>
+    <string name="now_playing">En salles</string>
+    <string name="upcoming">À venir</string>
+    <string name="open_youtube">Regarder sur YouTube</string>
+    <string name="open_browser">Ouvrir dans le navigateur</string>
+    <string name="toggle_liked">Basculer J'aime</string>
+    <string name="search_movies">Rechercher des films</string>
+    <string name="empty_favorites">Aucun favori n'a encore été sélectionné. Vous pouvez aimer un film dans la vue des détails et tous vos films aimés apparaîtront ici.</string>
+    <string name="user_rating">Note des utilisateurs</string>
+    <string name="like_movie">Aimer ce film. Actuellement non aimé</string>
+    <string name="unlike_movie">Ne plus aimer ce film. Actuellement aimé</string>
+    <string name="currently_selected">Actuellement sélectionné</string>
+    <string name="currently_unselected">Actuellement non sélectionné</string>
+</resources>

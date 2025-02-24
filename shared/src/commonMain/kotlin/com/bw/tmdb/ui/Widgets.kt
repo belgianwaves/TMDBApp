@@ -23,6 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bw.tmdb.transport.Movie
@@ -30,6 +32,9 @@ import com.skydoves.landscapist.coil3.CoilImage
 import com.skydoves.landscapist.components.rememberImageComponent
 import com.skydoves.landscapist.placeholder.shimmer.Shimmer
 import com.skydoves.landscapist.placeholder.shimmer.ShimmerPlugin
+import org.jetbrains.compose.resources.stringResource
+import tmdbapp.shared.generated.resources.Res
+import tmdbapp.shared.generated.resources.user_rating
 import kotlin.math.roundToInt
 
 
@@ -81,6 +86,9 @@ fun MoviePosterImage(movie: Movie, width: Int = 154, onClick: (Movie) -> Unit) {
                 .clickable {
                     onClick(movie)
                 }
+                .semantics {
+                    contentDescription = movie.title
+                }
         )
     }
 }
@@ -115,10 +123,15 @@ fun RatingWidget(rating: Double) {
             )
         }
 
+        val cd = "${stringResource(Res.string.user_rating)}: $percentage%"
         Text(
             text = "$percentage%",
             style = MaterialTheme.typography.bodySmall.copy(fontSize = 12.sp),
-            color = MaterialTheme.colorScheme.onSurface
+            color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier
+                .semantics {
+                    contentDescription = cd
+                }
         )
     }
 }

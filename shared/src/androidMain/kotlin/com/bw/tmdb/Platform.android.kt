@@ -18,12 +18,21 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import java.util.Locale
 
 class AndroidPlatform : Platform {
     override val name: String = "Android ${android.os.Build.VERSION.SDK_INT}"
 }
 
 actual fun getPlatform(): Platform = AndroidPlatform()
+
+actual fun getCurrentLocale(): String {
+    var result = Locale.getDefault().toLanguageTag()
+        if (result == "nl-BE") {
+            result = "nl-NL"
+        }
+    return result
+}
 
 actual fun createHttpClient(verbose: Boolean): HttpClient {
     return HttpClient(Android) {

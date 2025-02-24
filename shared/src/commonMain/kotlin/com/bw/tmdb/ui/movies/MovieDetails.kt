@@ -34,6 +34,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -49,9 +51,11 @@ import dev.chrisbanes.haze.hazeSource
 import org.jetbrains.compose.resources.stringResource
 import tmdbapp.shared.generated.resources.Res
 import tmdbapp.shared.generated.resources.back
+import tmdbapp.shared.generated.resources.like_movie
 import tmdbapp.shared.generated.resources.open_browser
 import tmdbapp.shared.generated.resources.open_youtube
 import tmdbapp.shared.generated.resources.toggle_liked
+import tmdbapp.shared.generated.resources.unlike_movie
 
 @Composable
 fun MovieDetails(
@@ -171,32 +175,47 @@ private fun MovieActions(
             .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.5f))
             .padding(horizontal = 32.dp, vertical = 16.dp)
     ) {
+        val openYoutube = stringResource(Res.string.open_youtube)
         Icon(
             imageVector = Icons.Filled.Movie,
-            contentDescription = stringResource(Res.string.open_youtube),
+            contentDescription = openYoutube,
             tint = MaterialTheme.colorScheme.onSurface.copy(alpha = if (movie.videos.isBlank()) 0.2f else 1.0f),
             modifier = Modifier
                 .clickable {
                     onOpenYoutube(movie)
                 }
+                .semantics {
+                    contentDescription = if (movie.videos.isBlank()) "" else openYoutube
+                }
                 .size(32.dp)
         )
+        val openBrowser = stringResource(Res.string.open_browser)
         Icon(
             imageVector = Icons.Filled.OpenInBrowser,
-            contentDescription = stringResource(Res.string.open_browser),
+            contentDescription = openBrowser,
             tint = MaterialTheme.colorScheme.onSurface.copy(alpha = if (movie.homepage.isNullOrBlank()) 0.2f else 1.0f),
             modifier = Modifier
                 .clickable {
                     onOpenBrowser(movie)
                 }
+                .semantics {
+                    contentDescription = if (movie.homepage.isNullOrBlank()) "" else openBrowser
+
+                }
                 .size(32.dp)
         )
+        val toggleLiked = stringResource(Res.string.toggle_liked)
+        val likeMovie = stringResource(Res.string.like_movie)
+        val unlikeMovie = stringResource(Res.string.unlike_movie)
         Icon(
             imageVector = if (movie.liked) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-            contentDescription = stringResource(Res.string.toggle_liked),
+            contentDescription = toggleLiked,
             modifier = Modifier
                 .clickable {
                     onToggleLike(movie)
+                }
+                .semantics {
+                    contentDescription = if (movie.liked) unlikeMovie else likeMovie
                 }
                 .size(32.dp)
         )

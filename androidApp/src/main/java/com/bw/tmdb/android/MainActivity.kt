@@ -11,16 +11,22 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import com.bw.tmdb.Config
 import com.bw.tmdb.DebugLog
 import com.bw.tmdb.DriverFactory
 import com.bw.tmdb.Graph
+import com.bw.tmdb.getCurrentLocale
 import com.bw.tmdb.ui.MyApplicationTheme
 import com.bw.tmdb.ui.Navigation
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DebugLog.verbose = 0 != applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE
+
+        Config.VERBOSE = 0 != applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE
+        Config.LANGUAGE = getCurrentLocale()
+
+        DebugLog.verbose = Config.VERBOSE
 
         Graph.init(DriverFactory(this))
 

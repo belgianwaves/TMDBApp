@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="all">Alles</string>
+    <string name="back">Terug</string>
+    <string name="movies">Films</string>
+    <string name="favorites">Favorieten</string>
+    <string name="search">Zoeken</string>
+    <string name="top_rated">Hoogst gewaardeerd</string>
+    <string name="popular">Populair</string>
+    <string name="now_playing">Nu in de bioscoop</string>
+    <string name="upcoming">Binnenkort</string>
+    <string name="open_youtube">Afspelen op YouTube</string>
+    <string name="open_browser">Openen in browser</string>
+    <string name="toggle_liked">Wissel 'Leuk gevonden'</string>
+    <string name="search_movies">Zoek films</string>
+    <string name="empty_favorites">Er zijn nog geen favorieten geselecteerd. Je kunt een film leuk vinden in de detailweergave en al je favoriete films zullen hier verschijnen.</string>
+    <string name="user_rating">Beoordeling van gebruikers</string>
+    <string name="like_movie">Vind deze film leuk. Momenteel niet leuk gevonden</string>
+    <string name="unlike_movie">Niet meer leuk vinden. Momenteel leuk gevonden</string>
+    <string name="currently_selected">Momenteel geselecteerd</string>
+    <string name="currently_unselected">Momenteel niet geselecteerd</string>
+</resources>

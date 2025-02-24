@@ -33,6 +33,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -48,6 +50,8 @@ import com.bw.tmdb.ui.movies.Movies
 import com.bw.tmdb.ui.search.Search
 import org.jetbrains.compose.resources.stringResource
 import tmdbapp.shared.generated.resources.Res
+import tmdbapp.shared.generated.resources.currently_selected
+import tmdbapp.shared.generated.resources.currently_unselected
 import tmdbapp.shared.generated.resources.favorites
 import tmdbapp.shared.generated.resources.movies
 import tmdbapp.shared.generated.resources.search
@@ -220,18 +224,23 @@ fun RowScope.AppBottomNavigationBarItem(
     onClick: () -> Unit,
     selected: Boolean,
 ) {
+    val cd = "$label, ${stringResource(if (selected) Res.string.currently_selected else Res.string.currently_unselected)}"
+
     Column(
         modifier = modifier
             .weight(1f)
             .clickable(
                 onClick = onClick,
-            ),
+            )
+            .semantics {
+                contentDescription = cd
+            },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         Image(
             painter = rememberVectorPainter(icon),
-            contentDescription = label,
+            contentDescription = null,
             contentScale = ContentScale.Crop,
             colorFilter = if (selected) {
                 ColorFilter.tint(MaterialTheme.colorScheme.primary)
@@ -239,10 +248,7 @@ fun RowScope.AppBottomNavigationBarItem(
                 ColorFilter.tint(MaterialTheme.colorScheme.outline)
             },
             modifier = modifier.then(
-                Modifier.clickable {
-                    onClick()
-                }
-                    .size(24.dp)
+                Modifier.size(24.dp)
             )
         )
 
