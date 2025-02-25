@@ -3,6 +3,7 @@ package com.bw.tmdb.ui.favorites
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.cash.sqldelight.coroutines.asFlow
+import com.bw.tmdb.DebugLog
 import com.bw.tmdb.Graph
 import com.bw.tmdb.db.Database
 import com.bw.tmdb.db.Movie
@@ -28,6 +29,17 @@ class FavoritesViewModel(
                     query.executeAsList()
                 )
             }.collect { _state.value = it }
+        }
+    }
+
+    fun deleteFavorite(id: Long) {
+        viewModelScope.launch {
+            try {
+                val queries = database.moviesQueries
+                queries.deleteMovie(id)
+            } catch (e: Exception) {
+                DebugLog.e("failed deleting favorite $id", e)
+            }
         }
     }
 }

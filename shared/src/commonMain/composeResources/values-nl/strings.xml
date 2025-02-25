@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
+    <string name="confirm_action">Actie bevestigen</string>
+    <string name="delete_favorite">Weet u zeker dat u deze favoriet wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.</string>
     <string name="all">Alles</string>
     <string name="back">Terug</string>
     <string name="movies">Films</string>

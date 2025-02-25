@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="confirm_action">Confirmer l'action</string>
+    <string name="delete_favorite">Êtes-vous sûr de vouloir supprimer ce favori ? Cette action est irréversible.</string>
     <string name="all">Tout</string>
     <string name="back">Retour</string>
     <string name="movies">Films</string>

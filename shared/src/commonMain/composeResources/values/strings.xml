@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="confirm_action">Confirm Action</string>
+    <string name="delete_favorite">Are you sure you want to delete this favorite? The action can not be undone</string>
     <string name="all">All</string>
     <string name="back">Back</string>
     <string name="movies">Movies</string>
@@ -17,6 +21,6 @@
     <string name="user_rating">User Rating</string>
     <string name="like_movie">Like this movie. Currently not liked</string>
     <string name="unlike_movie">Unlike this movie. Currently liked</string>
-    <string name="currently_selected">Currently Selected</string>
-    <string name="currently_unselected">Currently Not Selected</string>
+    <string name="currently_selected">Currently selected</string>
+    <string name="currently_unselected">Currently not selected</string>
 </resources>
